@@ -10,5 +10,7 @@ namespace EvaluacionQS.DataProvider
     {
 
         Task<IEnumerable<FacturaEmitida>> GetFacturas();
+
+        Task<int> PostFactura(Factura factura);
     }
 }

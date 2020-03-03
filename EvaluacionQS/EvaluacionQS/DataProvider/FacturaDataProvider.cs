@@ -1,12 +1,10 @@
-﻿using System;
+﻿using Dapper;
+using EvaluacionQS.Models;
+using Microsoft.Extensions.Configuration;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
-using System.Linq;
 using System.Threading.Tasks;
-using Dapper;
-using EvaluacionQS.Models;
-using Microsoft.Extensions.Configuration;
 
 namespace EvaluacionQS.DataProvider
 {
@@ -28,6 +26,21 @@ namespace EvaluacionQS.DataProvider
                     "SPS_LISTA_FACTURAS_EMITIDAS",
                     null,
                     commandType: CommandType.StoredProcedure);
+            }
+        }
+
+        public async Task<int> PostFactura(Factura factura)
+        {
+            using (var sqlConnection = new SqlConnection(_ConnectionString.GetSection("ConnectionString").GetSection("ConexionText").Value))
+            {
+                await sqlConnection.OpenAsync();
+                int  rowAffect = await sqlConnection.ExecuteAsync(
+                    "SPI_FACTURA",
+                    factura,
+                     null,
+                      null,
+                    commandType: CommandType.StoredProcedure);
+                return rowAffect;
             }
         }
     }

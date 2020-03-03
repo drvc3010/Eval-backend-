@@ -21,24 +21,14 @@ namespace EvaluacionQS.Controllers
             this.facturaDataProvider = facturaDataProvider;
         }
 
-        // GET: api/Factura
-        [HttpGet]
-        public async Task<IEnumerable<FacturaEmitida>> Get()
-        {
-            return await this.facturaDataProvider.GetFacturas();
-        }
-
-        // GET: api/Factura/5
-        [HttpGet("{id}", Name = "Get")]
-        public string Get(int id)
-        {
-            return "value";
-        }
+        
 
         // POST: api/Factura
         [HttpPost]
-        public void Post([FromBody] string value)
+        public string Post(Factura factura)
         {
+           int   var = this.facturaDataProvider.PostFactura(factura).Result;
+            return var > 0 ? "Se registro correctamente la factura." : "No se pudo registrar la factura, revise de nuevo por favor.";
         }
 
         // PUT: api/Factura/5

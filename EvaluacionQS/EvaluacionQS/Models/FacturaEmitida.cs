@@ -10,8 +10,8 @@ namespace EvaluacionQS.Models
         public int FacturaId { get; set; }
         public decimal MontoFactura { get; set; }
         public string Moneda { get; set; }
-        public string NombreCliente { get; set; }
-        public string NombeVendedor { get; set; }
+        public string NombresCliente { get; set; }
+        public string NombresVendedor { get; set; }
         public int VendedorId { get; set; }
         public int ClienteId { get; set; }
         public string Nic { get; set; }

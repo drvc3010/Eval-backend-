@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using EvaluacionQS.DataProvider;
+using EvaluacionQS.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -11,11 +13,19 @@ namespace EvaluacionQS.Controllers
     [ApiController]
     public class FacturaController : ControllerBase
     {
+
+        private IFacturaDataProvider facturaDataProvider;
+
+        public FacturaController(IFacturaDataProvider facturaDataProvider)
+        {
+            this.facturaDataProvider = facturaDataProvider;
+        }
+
         // GET: api/Factura
         [HttpGet]
-        public IEnumerable<string> Get()
+        public async Task<IEnumerable<FacturaEmitida>> Get()
         {
-            return new string[] { "value1", "value2" };
+            return await this.facturaDataProvider.GetFacturas();
         }
 
         // GET: api/Factura/5

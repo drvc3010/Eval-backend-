@@ -23,6 +23,7 @@ namespace EvaluacionQS
             services.AddTransient<IClienteDataProvider, ClienteDataProvider>();
             services.AddTransient<IProductoDataProvider, ProductoDataProvider>();
             services.AddTransient<IVendedorDataProvider, VendedorDataProvider>();
+            services.AddTransient<IFacturaDataProvider, FacturaDataProvider>();
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
             services.AddSingleton<IConfiguration>(Configuration);
         }

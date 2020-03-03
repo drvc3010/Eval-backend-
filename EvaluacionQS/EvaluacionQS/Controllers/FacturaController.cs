@@ -21,7 +21,13 @@ namespace EvaluacionQS.Controllers
             this.facturaDataProvider = facturaDataProvider;
         }
 
-        
+        [HttpGet]
+        public async Task<IEnumerable<FacturaEmitida>> Get()
+        {
+            return await this.facturaDataProvider.GetFacturas();
+        }
+
+
 
         // POST: api/Factura
         [HttpPost]
